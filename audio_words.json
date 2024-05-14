@@ -1,0 +1,200 @@
+{
+    "FOOD": {
+        "apple": [
+            "яблоко",
+            "AUDIO/FOOD/apple.mp3"
+        ],
+        "banana": [
+            "банан",
+            "AUDIO/FOOD/banana.mp3"
+        ],
+        "carrot": [
+            "морковь",
+            "AUDIO/FOOD/carrot.mp3"
+        ],
+        "potato": [
+            "картофель",
+            "AUDIO/FOOD/potato.mp3"
+        ],
+        "chicken": [
+            "курица",
+            "AUDIO/FOOD/chicken.mp3"
+        ],
+        "beef": [
+            "говядина",
+            "AUDIO/FOOD/beef.mp3"
+        ],
+        "fish": [
+            "рыба",
+            "AUDIO/FOOD/fish.mp3"
+        ],
+        "bread": [
+            "хлеб",
+            "AUDIO/FOOD/bread.mp3"
+        ],
+        "cheese": [
+            "сыр",
+            "AUDIO/FOOD/cheese.mp3"
+        ],
+        "rice": [
+            "рис",
+            "AUDIO/FOOD/rice.mp3"
+        ],
+        "pasta": [
+            "паста",
+            "AUDIO/FOOD/pasta.mp3"
+        ],
+        "salad": [
+            "салат",
+            "AUDIO/FOOD/salad.mp3"
+        ],
+        "soup": [
+            "суп",
+            "AUDIO/FOOD/soup.mp3"
+        ],
+        "egg": [
+            "яйцо",
+            "AUDIO/FOOD/egg.mp3"
+        ],
+        "milk": [
+            "молоко",
+            "AUDIO/FOOD/milk.mp3"
+        ],
+        "butter": [
+            "масло",
+            "AUDIO/FOOD/butter.mp3"
+        ]
+    },
+    "BUSINESS": {
+        "investment": [
+            "инвестиция",
+            "AUDIO/BUSINESS/investment.mp3"
+        ],
+        "revenue": [
+            "доход",
+            "AUDIO/BUSINESS/revenue.mp3"
+        ],
+        "profit": [
+            "прибыль",
+            "AUDIO/BUSINESS/profit.mp3"
+        ],
+        "loss": [
+            "убыток",
+            "AUDIO/BUSINESS/loss.mp3"
+        ],
+        "market": [
+            "рынок",
+            "AUDIO/BUSINESS/market.mp3"
+        ],
+        "strategy": [
+            "стратегия",
+            "AUDIO/BUSINESS/strategy.mp3"
+        ],
+        "management": [
+            "управление",
+            "AUDIO/BUSINESS/management.mp3"
+        ],
+        "employee": [
+            "сотрудник",
+            "AUDIO/BUSINESS/employee.mp3"
+        ],
+        "customer": [
+            "клиент",
+            "AUDIO/BUSINESS/customer.mp3"
+        ],
+        "supplier": [
+            "поставщик",
+            "AUDIO/BUSINESS/supplier.mp3"
+        ],
+        "contract": [
+            "контракт",
+            "AUDIO/BUSINESS/contract.mp3"
+        ],
+        "negotiation": [
+            "переговоры",
+            "AUDIO/BUSINESS/negotiation.mp3"
+        ],
+        "partnership": [
+            "партнерство",
+            "AUDIO/BUSINESS/partnership.mp3"
+        ],
+        "innovation": [
+            "инновация",
+            "AUDIO/BUSINESS/innovation.mp3"
+        ],
+        "brand": [
+            "бренд",
+            "AUDIO/BUSINESS/brand.mp3"
+        ],
+        "merger": [
+            "слияние",
+            "AUDIO/BUSINESS/merger.mp3"
+        ]
+    },
+    "TRAVEL": {
+        "airplane": [
+            "самолет",
+            "AUDIO/TRAVEL/airplane.mp3"
+        ],
+        "airport": [
+            "аэропорт",
+            "AUDIO/TRAVEL/airport.mp3"
+        ],
+        "baggage": [
+            "багаж",
+            "AUDIO/TRAVEL/baggage.mp3"
+        ],
+        "passport": [
+            "паспорт",
+            "AUDIO/TRAVEL/passport.mp3"
+        ],
+        "ticket": [
+            "билет",
+            "AUDIO/TRAVEL/ticket.mp3"
+        ],
+        "hotel": [
+            "отель",
+            "AUDIO/TRAVEL/hotel.mp3"
+        ],
+        "reservation": [
+            "бронирование",
+            "AUDIO/TRAVEL/reservation.mp3"
+        ],
+        "tourist": [
+            "турист",
+            "AUDIO/TRAVEL/tourist.mp3"
+        ],
+        "destination": [
+            "направление",
+            "AUDIO/TRAVEL/destination.mp3"
+        ],
+        "itinerary": [
+            "маршрут",
+            "AUDIO/TRAVEL/itinerary.mp3"
+        ],
+        "excursion": [
+            "экскурсия",
+            "AUDIO/TRAVEL/excursion.mp3"
+        ],
+        "guide": [
+            "гид",
+            "AUDIO/TRAVEL/guide.mp3"
+        ],
+        "map": [
+            "карта",
+            "AUDIO/TRAVEL/map.mp3"
+        ],
+        "souvenir": [
+            "сувенир",
+            "AUDIO/TRAVEL/souvenir.mp3"
+        ],
+        "currency": [
+            "валюта",
+            "AUDIO/TRAVEL/currency.mp3"
+        ],
+        "visa": [
+            "виза",
+            "AUDIO/TRAVEL/visa.mp3"
+        ]
+    }
+}
