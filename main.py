@@ -346,7 +346,7 @@ def fill_tables():
 
 
 if __name__ == "__main__":
-    create_tables()         # Для создания таблиц
+    # create_tables()       # Для создания таблиц
     # fill_tables()         # Для заполнения таблиц данными
     from main_window import MainWindow
 

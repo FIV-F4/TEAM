@@ -1,6 +1,7 @@
 import os
 import shutil
 
+
 # Функция чтения файла и создания списка переводов
 def read_translation_file(file_path):
     translation_list = []
@@ -11,6 +12,7 @@ def read_translation_file(file_path):
                 translation_list.append(parts[1].strip())
     return translation_list
 
+
 # Копирование файла в новую папку с новым именем
 def copy_file_with_new_name(src_path, dst_dir, new_name):
     # Создание директории, если она не существует
@@ -19,6 +21,7 @@ def copy_file_with_new_name(src_path, dst_dir, new_name):
     dst_path = os.path.join(dst_dir, new_name + '.png')
     shutil.copy(src_path, dst_path)
     print(f'Файл {src_path} скопирован в {dst_path}')
+
 
 # Основная логика
 def main():
@@ -43,6 +46,7 @@ def main():
         # Копирование файла с каждым именем из списка переводов
         for translation in translation_list:
             copy_file_with_new_name(src_path, dst_dir, translation)
+
 
 if __name__ == '__main__':
     main()

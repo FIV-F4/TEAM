@@ -8,6 +8,7 @@ cursor = conn.cursor()
 # Enabling foreign keys
 cursor.execute('PRAGMA foreign_keys = ON')
 
+
 # Функция для получения topic_id по названию topic_name
 def get_topic_id(topic_name):
     cursor.execute('SELECT topic_id FROM topics WHERE topic_name = ?', (topic_name,))

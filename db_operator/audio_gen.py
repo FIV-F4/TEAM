@@ -1,6 +1,7 @@
 from gtts import gTTS
 import os
 
+
 # Функция для чтения файла и создания словаря
 def read_file_to_dict(filepath):
     translation_dict = {}
@@ -15,6 +16,7 @@ def read_file_to_dict(filepath):
                 value = parts[0].split('. ')[1].strip()
                 translation_dict[key] = value
     return translation_dict
+
 
 # Функция для создания нового словаря с аудио файлами
 def create_audio_dictionary(input_dict, category):
@@ -32,6 +34,7 @@ def create_audio_dictionary(input_dict, category):
         new_dict[english_word] = [russian_translation, audio_file_path]
 
     return new_dict
+
 
 # Пути к файлам
 file_paths = {
