@@ -11,26 +11,27 @@ def center_window(window, width=800, height=600):
     x = (screen_width - width) // 2
     y = (screen_height - height) // 2
     window.geometry(f"{width}x{height}+{x}+{y}")
-    window.minsize(800, 600)    # Минимальные размеры окна
-    window.maxsize(800, 600)    # Максимальные размеры окна
+    window.minsize(800, 600)  # Минимальные размеры окна
+    window.maxsize(800, 600)  # Максимальные размеры окна
 
 
 # Базовый класс окна
 class BaseWindow:
-    def __init__(self, root, main_root):
+    def __init__(self, root, main_root, current_user=None):
         self.root = root
         self.main_root = main_root
+        self.current_user = current_user
         center_window(self.root)
 
     def go_back(self, new_window_class):
         self.root.destroy()
         new_window = tk.Toplevel(self.main_root)
-        new_window_class(new_window, self.main_root)
+        new_window_class(new_window, self.main_root, self.current_user)
 
     def open_new_window(self, new_window_class):
         self.root.withdraw()
         new_window = tk.Toplevel(self.main_root)
-        new_window_class(new_window, self.main_root)
+        new_window_class(new_window, self.main_root, self.current_user)
 
     def exit_program(self):
         self.root.destroy()
@@ -350,7 +351,7 @@ if __name__ == "__main__":
     # fill_tables()         # Для заполнения таблиц данными
     from main_window import MainWindow
 
-    root = tk.Tk()          # Инициализация главного окна
-    center_window(root)     # Центрирование окна
-    app = MainWindow(root, root)    # Инициализация главного окна
-    root.mainloop()         # Запуск главного цикла
+    root = tk.Tk()  # Инициализация главного окна
+    center_window(root)  # Центрирование окна
+    app = MainWindow(root, root, None)  # Инициализация главного окна
+    root.mainloop()  # Запуск главного цикла

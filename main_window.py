@@ -3,9 +3,11 @@ from main import BaseWindow
 
 
 class MainWindow(BaseWindow):
-    def __init__(self, root, main_root):
+    def __init__(self, root, main_root, current_user):
         super().__init__(root, main_root)
         self.root.title("Программа обучения английскому языку - Главное меню")
+
+        self.current_user = current_user
 
         # Создаем основной лейбл
         self.main_label = tk.Label(root, text="Главное меню", font=("Arial", 24))

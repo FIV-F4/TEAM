@@ -13,7 +13,7 @@ def read_file_to_dict(filepath):
             parts = line.split(' - ')
             if len(parts) == 2:
                 key = parts[1].strip()
-                value = parts[0].split('. ')[1].strip()
+                value = parts[0].strip()
                 translation_dict[key] = value
     return translation_dict
 
