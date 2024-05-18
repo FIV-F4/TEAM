@@ -17,6 +17,7 @@ def create_database():
     conn.commit()
     conn.close()
 
+
 # Получение изображения из базы данных
 def get_image_from_db():
     conn = sqlite3.connect('mydatabase.db')
@@ -25,6 +26,7 @@ def get_image_from_db():
     image_data = cursor.fetchone()[0]
     conn.close()
     return image_data
+
 
 # Отображение изображения в Tkinter
 def show_image():
@@ -43,6 +45,7 @@ def show_image():
     button.pack()
 
     root.mainloop()
+
 
 if __name__ == '__main__':
     create_database()

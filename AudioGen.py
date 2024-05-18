@@ -60,19 +60,18 @@ travel_dictionary = {
     "visa": "виза"
 }
 
-
 words_dictionary = {
     'FOOD': food_dictionary,
     'BUSINESS': business_dictionary,
     'TRAVEL': travel_dictionary
 }
-audio_words_dictionary ={}
+audio_words_dictionary = {}
 for key in words_dictionary:
- # Функция для создания нового словаря с аудио файлами
+    # Функция для создания нового словаря с аудио файлами
     def create_audio_dictionary(input_dict):
         new_dict = {}
         for english_word, russian_translation in input_dict.items():
-        # Генерация аудио файла
+            # Генерация аудио файла
             tts = gTTS(english_word, lang='en')
             audio_file_path = f'AUDIO/{key}/{english_word}.mp3'
             os_path = f'AUDIO/{key}'
@@ -81,23 +80,18 @@ for key in words_dictionary:
                 os.makedirs(dir_path)
             tts.save(audio_file_path)
 
-        # Добавление в новый словарь
+            # Добавление в новый словарь
             new_dict[english_word] = [russian_translation, audio_file_path]
 
         return new_dict
 
 
-# Создание нового словаря с аудио файлами
+    # Создание нового словаря с аудио файлами
 
     audio_words_dictionary[key] = create_audio_dictionary(words_dictionary[key])
 
-
-
 with open('audio_words.json', 'w', encoding='utf-8') as f:
     json.dump(audio_words_dictionary, f, ensure_ascii=False, indent=4)
-
-
-
 
 with open('audio_words.json', 'r', encoding='utf-8') as f:
     loaded_dictionary = json.load(f)
