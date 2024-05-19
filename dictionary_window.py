@@ -4,7 +4,7 @@ from main import BaseWindow
 
 class DictionaryWindow(BaseWindow):
     def __init__(self, root, main_root, current_user):
-        super().__init__(root, main_root)
+        super().__init__(root, main_root, current_user)
         self.root.title("Программа обучения английскому языку - Словарь")
 
         self.current_user = current_user
