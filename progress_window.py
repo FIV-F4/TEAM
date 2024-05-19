@@ -2,9 +2,11 @@ import tkinter as tk
 from main import BaseWindow
 
 class ProgressWindow(BaseWindow):
-    def __init__(self, root, main_root):
-        super().__init__(root, main_root)
+    def __init__(self, root, main_root, current_user):
+        super().__init__(root, main_root, current_user)
         self.root.title("Программа обучения английскому языку - Информация по прогрессу")
+
+        self.current_user = current_user
 
         # Создаем основной лейбл
         self.main_label = tk.Label(root, text="Прогресс", font=("Arial", 24))
