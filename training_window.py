@@ -6,7 +6,7 @@ from lessons import Lessons
 
 class TrainingWindow(BaseWindow):
     def __init__(self, root, main_root, current_user):
-        super().__init__(root, main_root)
+        super().__init__(root, main_root, current_user)
         self.root.title("Программа обучения английскому языку - Обучение")
 
         self.current_user = current_user

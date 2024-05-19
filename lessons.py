@@ -12,7 +12,7 @@ from main import BaseWindow
 
 class Lessons(BaseWindow):
     def __init__(self, root, main_root, current_user, topic, width=250, height=300):
-        super().__init__(root, main_root)
+        super().__init__(root, main_root, current_user)
         self.current_user = current_user
         self.width = width
         self.height = height

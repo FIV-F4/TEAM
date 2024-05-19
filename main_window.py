@@ -1,10 +1,9 @@
 import tkinter as tk
 from main import BaseWindow
 
-
 class MainWindow(BaseWindow):
     def __init__(self, root, main_root, current_user):
-        super().__init__(root, main_root)
+        super().__init__(root, main_root, current_user)
         self.root.title("Программа обучения английскому языку - Главное меню")
 
         self.current_user = current_user
@@ -16,8 +15,7 @@ class MainWindow(BaseWindow):
         # Создаем кнопки
         self.training_button = tk.Button(root, text="Обучение", width=20, height=5, command=self.open_training_window)
         self.testing_button = tk.Button(root, text="Тестирование", width=20, height=5, command=self.open_testing_window)
-        self.dictionary_button = tk.Button(root, text="Словарь", width=20, height=5,
-                                           command=self.open_dictionary_window)
+        self.dictionary_button = tk.Button(root, text="Словарь", width=20, height=5, command=self.open_dictionary_window)
         self.progress_button = tk.Button(root, text="Прогресс", width=20, height=5, command=self.open_progress_window)
 
         # Размещаем кнопки
