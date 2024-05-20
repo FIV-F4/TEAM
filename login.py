@@ -7,6 +7,25 @@ import io
 from main import BaseWindow
 
 
+class ErrorWindow:
+    def __init__(self, parent):
+        self.root = tk.Toplevel(parent)
+        self.root.title("Ошибка!")
+        self.root.geometry("400x150")
+        self.root.resizable(False, False)
+        self.center_window()
+
+        Label(self.root, text="Ошибка! Выберите пользователя!", font=("Arial", 14)).pack(pady=20)
+        Button(self.root, text="OK", command=self.root.destroy, font=("Arial", 14)).pack(pady=10)
+
+    def center_window(self):
+        screen_width = self.root.winfo_screenwidth()
+        screen_height = self.root.winfo_screenheight()
+        x = (screen_width - 400) // 2
+        y = (screen_height - 150) // 2
+        self.root.geometry(f"400x150+{x}+{y}")
+
+
 class LoginWindow(BaseWindow):
     def __init__(self, root, main_root, current_user):
         super().__init__(root, main_root, current_user)
@@ -65,6 +84,9 @@ class LoginWindow(BaseWindow):
 
     def select_user(self):
         selected_nickname = self.user_combobox.get()
+        if not selected_nickname:
+            ErrorWindow(self.root)
+            return
         selected_user = next(user for user in self.users if user[1] == selected_nickname)
         self.current_user = selected_user[0]
 
