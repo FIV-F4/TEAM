@@ -1,100 +1,100 @@
-1. хлеб - bread
-2. молоко - milk
-3. сыр - cheese
-4. картофель - potato
-5. огурец - cucumber
-6. помидор - tomato
-7. яйцо - egg
-8. курица - chicken
-9. говядина - beef
-10. свинина - pork
-11. рыба - fish
-12. морепродукты - seafood
-13. суп - soup
-14. салат - salad
-15. масло - butter
-16. рис - rice
-17. макароны - pasta
-18. чеснок - garlic
-19. лук - onion
-20. грибы - mushrooms
-21. бекон - bacon
-22. колбаса - sausage
-23. хот-дог - hot dog
-24. гамбургер - hamburger
-25. пицца - pizza
-26. блины - pancakes
-27. шоколад - chocolate
-28. печенье - cookies
-29. торт - cake
-30. пирог - pie
-31. сок - juice
-32. чай - tea
-33. кофе - coffee
-34. вода - water
-35. вино - wine
-36. пиво - beer
-37. лимонад - lemonade
-38. смузи - smoothie
-39. мороженое - ice cream
-40. сахар - sugar
-41. соль - salt
-42. перец - pepper
-43. специи - spices
-44. уксус - vinegar
-45. кетчуп - ketchup
-46. горчица - mustard
-47. майонез - mayonnaise
-48. зерно - grain
-49. крупа - cereal
-50. фасоль - beans
-51. чечевица - lentils
-52. орехи - nuts
-53. мед - honey
-54. джем - jam
-55. конфеты - candies
-56. пудинг - pudding
-57. варенье - preserve
-58. кексы - muffins
-59. крекеры - crackers
-60. чипсы - chips
-61. сендвич - sandwich
-62. креветки - shrimps
-63. лосось - salmon
-64. тунец - tuna
-65. кальмары - squids
-66. мидии - mussels
-67. устрицы - oysters
-68. осьминоги - octopuses
-69. водоросли - seaweed
-70. икра - caviar
-71. крабы - crabs
-72. лапша - noodles
-73. пельмени - dumplings
-74. вареники - pierogi
-75. борщ - borscht
-76. шашлык - kebab
-77. плов - pilaf
-78. солянка - solyanka
-79. окрошка - okroshka
-80. рулет - roulade
-81. шницель - schnitzel
-82. стейк - steak
-83. бифштекс - beefsteak
-84. рагу - ragout
-85. гуляш - goulash
-86. бульон - broth
-87. гранат - pomegranate
-88. апельсин - orange
-89. банан - banana
-90. яблоко - apple
-91. груша - pear
-92. виноград - grapes
-93. клубника - strawberry
-94. малина - raspberry
-95. черника - blueberry
-96. арбуз - watermelon
-97. дыня - melon
-98. кабачок - zucchini
-99. баклажан - eggplant
-100. тыква - pumpkin
+хлеб - bread
+молоко - milk
+сыр - cheese
+картофель - potato
+огурец - cucumber
+помидор - tomato
+яйцо - egg
+курица - chicken
+говядина - beef
+свинина - pork
+рыба - fish
+морепродукты - seafood
+суп - soup
+салат - salad
+масло - butter
+рис - rice
+макароны - pasta
+чеснок - garlic
+лук - onion
+грибы - mushrooms
+бекон - bacon
+колбаса - sausage
+хот-дог - hot dog
+гамбургер - hamburger
+пицца - pizza
+блины - pancakes
+шоколад - chocolate
+печенье - cookies
+торт - cake
+пирог - pie
+сок - juice
+чай - tea
+кофе - coffee
+вода - water
+вино - wine
+пиво - beer
+лимонад - lemonade
+смузи - smoothie
+мороженое - ice cream
+сахар - sugar
+соль - salt
+перец - pepper
+специи - spices
+уксус - vinegar
+кетчуп - ketchup
+горчица - mustard
+майонез - mayonnaise
+зерно - grain
+крупа - cereal
+фасоль - beans
+чечевица - lentils
+орехи - nuts
+мед - honey
+джем - jam
+конфеты - candies
+пудинг - pudding
+варенье - preserve
+кексы - muffins
+крекеры - crackers
+чипсы - chips
+сендвич - sandwich
+креветки - shrimps
+лосось - salmon
+тунец - tuna
+кальмары - squids
+мидии - mussels
+устрицы - oysters
+осьминоги - octopuses
+водоросли - seaweed
+икра - caviar
+крабы - crabs
+лапша - noodles
+пельмени - dumplings
+вареники - pierogi
+борщ - borscht
+шашлык - kebab
+плов - pilaf
+солянка - solyanka
+окрошка - okroshka
+рулет - roulade
+шницель - schnitzel
+стейк - steak
+бифштекс - beefsteak
+рагу - ragout
+гуляш - goulash
+бульон - broth
+гранат - pomegranate
+апельсин - orange
+банан - banana
+яблоко - apple
+груша - pear
+виноград - grapes
+клубника - strawberry
+малина - raspberry
+черника - blueberry
+арбуз - watermelon
+дыня - melon
+кабачок - zucchini
+баклажан - eggplant
+тыква - pumpkin

@@ -5,8 +5,9 @@ import os
 conn = sqlite3.connect('team_app.db')
 cursor = conn.cursor()
 
-# Enabling foreign keys
+# Включение поддержки внешних ключей
 cursor.execute('PRAGMA foreign_keys = ON')
+
 
 # Функция для получения topic_id по названию topic_name
 def get_topic_id(topic_name):
@@ -20,21 +21,26 @@ def get_topic_id(topic_name):
         return cursor.lastrowid
 
 
-# Функция для чтения данных из файлов и вставки в базу данных
+# Функция для вставки слов из файла в базу данных
 def insert_words_from_file(file_path, topic):
     topic_id = get_topic_id(topic)
 
     with open(file_path, 'r', encoding='utf-8') as file:
         for line in file:
             if line.strip():
-                # Разделяем строку по символу "-"
                 russian, english = line.strip().split(' - ')
+
+                # Проверка на существование слова
+                cursor.execute('SELECT word_id FROM words WHERE russian = ?', (russian,))
+                if cursor.fetchone():
+                    print(f'Слово "{russian}" уже существует в базе данных. Пропуск вставки.')
+                    continue
 
                 # Путь к изображению и звуковому файлу
                 img_path = f'db_operator/multimedia/img/{topic}/{english}.png'
                 audio_path = f'db_operator/multimedia/audio/{topic}/{english}.mp3'
 
-                # Проверяем наличие файлов
+                # Проверка наличия файлов
                 if not os.path.exists(img_path):
                     img_path = None
                 if not os.path.exists(audio_path):
