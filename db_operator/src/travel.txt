@@ -93,8 +93,8 @@
 93. комфорт - comfort
 94. удобство - convenience
 95. проживание - accommodation
-96. hobby - хобби
-97. journey - путешествие
-98. tourist attraction - туристическая достопримечательность
-99. sightseeing - осмотр достопримечательностей
-100. destination - место назначения
+96. хобби - hobby
+97. путешествие - journey
+98. туристическая достопримечательность - tourist attraction
+99. осмотр достопримечательностей - sightseeing
+100. место назначения - destination
