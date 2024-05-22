@@ -1,7 +1,6 @@
 import subprocess
 import sys
 
-
 def run_script(script_path):
     try:
         # Определите путь к интерпретатору Python
@@ -11,8 +10,6 @@ def run_script(script_path):
     except subprocess.CalledProcessError as e:
         print(f"Error occurred while running {script_path}: {e}")
         return False
-
-
 
 def main():
     scripts = [
@@ -40,5 +37,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-# кусок кода от FIV-F4, может потом красиво переписать
+
 
