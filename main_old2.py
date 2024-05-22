@@ -1,4 +1,5 @@
 import tkinter as tk
+# От сих
 from tkinter import messagebox
 from PIL import Image, ImageTk
 import sqlite3
@@ -657,4 +658,5 @@ class MainTestApp:
 if __name__ == "__main__":
     root = tk.Tk()
     app = MainTestApp(root)
+#До сих
     root.mainloop()
