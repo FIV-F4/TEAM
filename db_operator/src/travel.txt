@@ -1,100 +1,100 @@
-паспорт - passport
-билет - ticket
-регистрация - check-in
-рейс - flight
-отпуск - vacation
-виза - visa
-чемодан - suitcase
-аэропорт - airport
-отель - hotel
-пляж - beach
-таможня - customs
-багаж - luggage
-турист - tourist
-экскурсия - excursion
-гид - guide
-карта - map
-путеводитель - guidebook
-фотоаппарат - camera
-сувенир - souvenir
-памятник - monument
-страховка - insurance
-путешествие - journey
-остановка - stop
-направление - direction
-прибытие - arrival
-отправление - departure
-загранпаспорт - foreign passport
-поезд - train
-автобус - bus
-трамвай - tram
-метро - subway
-такси - taxi
-корабль - ship
-паром - ferry
-круиз - cruise
-тур - tour
-пешком - on foot
-велосипед - bicycle
-аренда - rental
-бронирование - booking
-номер - room
-заселение - check-in (hotel)
-выселение - check-out (hotel)
-двухместный номер - double room
-одноместный номер - single room
-местный - local
-международный - international
-рюкзак - backpack
-консульство - consulate
-граница - border
-пограничник - border guard
-досмотр - inspection
-декларация - declaration
-посольство - embassy
-поход - hike
-лагерь - camp
-палатка - tent
-костер - campfire
-звезды - stars
-горы - mountains
-река - river
-озеро - lake
-море - sea
-океан - ocean
-пустыня - desert
-джунгли - jungle
-сафари - safari
-приключение - adventure
-культура - culture
-традиция - tradition
-местный житель - local resident
-курорт - resort
-расписание - schedule
-питание - meals
-завтрак - breakfast
-обед - lunch
-ужин - dinner
-бюджет - budget
-расходы - expenses
-валюта - currency
-обмен - exchange
-курс - rate
-чек - check
-недорого - inexpensive
-дорого - expensive
-пакет - package
-документы - documents
-пропуск - permit
-скидка - discount
-купон - coupon
-завершение - conclusion
-начало - beginning
-комфорт - comfort
-удобство - convenience
-проживание - accommodation
-хобби - hobby
-путешествие - journey
-туристическая достопримечательность - tourist attraction
-осмотр достопримечательностей - sightseeing
-место назначения - destination
+1. паспорт - passport
+2. билет - ticket
+3. регистрация - check-in
+4. рейс - flight
+5. отпуск - vacation
+6. виза - visa
+7. чемодан - suitcase
+8. аэропорт - airport
+9. отель - hotel
+10. пляж - beach
+11. таможня - customs
+12. багаж - luggage
+13. турист - tourist
+14. экскурсия - excursion
+15. гид - guide
+16. карта - map
+17. путеводитель - guidebook
+18. фотоаппарат - camera
+19. сувенир - souvenir
+20. памятник - monument
+21. страховка - insurance
+22. путешествие - journey
+23. остановка - stop
+24. направление - direction
+25. прибытие - arrival
+26. отправление - departure
+27. загранпаспорт - foreign passport
+28. поезд - train
+29. автобус - bus
+30. трамвай - tram
+31. метро - subway
+32. такси - taxi
+33. корабль - ship
+34. паром - ferry
+35. круиз - cruise
+36. тур - tour
+37. пешком - on foot
+38. велосипед - bicycle
+39. аренда - rental
+40. бронирование - booking
+41. номер - room
+42. заселение - check-in (hotel)
+43. выселение - check-out (hotel)
+44. двухместный номер - double room
+45. одноместный номер - single room
+46. местный - local
+47. международный - international
+48. рюкзак - backpack
+49. консульство - consulate
+50. граница - border
+51. пограничник - border guard
+52. досмотр - inspection
+53. декларация - declaration
+54. посольство - embassy
+55. поход - hike
+56. лагерь - camp
+57. палатка - tent
+58. костер - campfire
+59. звезды - stars
+60. горы - mountains
+61. река - river
+62. озеро - lake
+63. море - sea
+64. океан - ocean
+65. пустыня - desert
+66. джунгли - jungle
+67. сафари - safari
+68. приключение - adventure
+69. культура - culture
+70. традиция - tradition
+71. местный житель - local resident
+72. курорт - resort
+73. расписание - schedule
+74. питание - meals
+75. завтрак - breakfast
+76. обед - lunch
+77. ужин - dinner
+78. бюджет - budget
+79. расходы - expenses
+80. валюта - currency
+81. обмен - exchange
+82. курс - rate
+83. чек - check
+84. недорого - inexpensive
+85. дорого - expensive
+86. пакет - package
+87. документы - documents
+88. пропуск - permit
+89. скидка - discount
+90. купон - coupon
+91. завершение - conclusion
+92. начало - beginning
+93. комфорт - comfort
+94. удобство - convenience
+95. проживание - accommodation
+96. hobby - хобби
+97. путешествие - journey
+98. туристическая достопримечательность - tourist attraction
+99. осмотр достопримечательностей - sightseeing
+100. место назначения - destination
