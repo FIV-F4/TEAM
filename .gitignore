@@ -160,6 +160,6 @@ cython_debug/
 .idea/
 # start by andrei basov - ignore db files and multimedia generated for words table
 *.db
-db_operator/multimedia
+#db_operator/multimedia
 .DS_Store
 # end by andrei basov
