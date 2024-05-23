@@ -1,6 +1,5 @@
 import tkinter as tk
 
-
 def center_window(window, width=800, height=600):
     screen_width = window.winfo_screenwidth()
     screen_height = window.winfo_screenheight()

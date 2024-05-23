@@ -1,7 +1,6 @@
 import subprocess
 import sys
 
-
 def run_script(script_path):
     try:
         # Определите путь к интерпретатору Python
@@ -12,17 +11,15 @@ def run_script(script_path):
         print(f"Error occurred while running {script_path}: {e}")
         return False
 
-
-
 def main():
     scripts = [
         ("генерация аудио", "db_operator/audio_gen.py"),
-        ("размножение картинок", "db_operator/fake_img_gen.py"),
+       # ("размножение картинок", "db_operator/fake_img_gen.py"),
         ("генерация базы данных", "db_operator/db_gen.py"),
         ("заполнение и связывание таблиц words и topics", "db_operator/db_words.py"),
         ("заполнение таблиц achievements, tests, users и перевод тем для отображения", "db_operator/db_post_gen.py"),
         ("добавленеи ачивок", "db_operator/add_achievemnts_to_db.py"),
-        ("добавленеи ачивок", "db_operator/addProgress.py"),
+        ("добавленеи ачивок", "db_operator/addProgress.py")
     ]
 
     for message, script in scripts:
@@ -40,5 +37,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-# кусок кода от FIV-F4, может потом красиво переписать
+
 
