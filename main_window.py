@@ -1,5 +1,7 @@
 import tkinter as tk
 from main import BaseWindow
+from styles import StyledCanvas, StyledButton
+
 
 class MainWindow(BaseWindow):
     def __init__(self, root, main_root, current_user):
@@ -8,21 +10,19 @@ class MainWindow(BaseWindow):
 
         self.current_user = current_user
 
-        # Создаем основной лейбл
-        self.main_label = tk.Label(root, text="Главное меню", font=("Arial", 24))
-        self.main_label.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+        # Создаем холст для фона
+        self.canvas = StyledCanvas(self.root)
+        self.canvas.pack(fill=tk.BOTH, expand=True)
+
+        # Создаем основной текст на холсте
+        self.canvas.create_text(400, 50, text="Главное меню", font=('Helvetica', 24), fill='black')
 
         # Создаем кнопки
-        self.training_button = tk.Button(root, text="Обучение", width=20, height=5, command=self.open_training_window)
-        self.testing_button = tk.Button(root, text="Тестирование", width=20, height=5, command=self.open_testing_window)
-        self.dictionary_button = tk.Button(root, text="Словарь", width=20, height=5, command=self.open_dictionary_window)
-        self.progress_button = tk.Button(root, text="Прогресс", width=20, height=5, command=self.open_progress_window)
-
-        # Размещаем кнопки
-        self.training_button.place(relx=0.25, rely=0.3, anchor=tk.CENTER)
-        self.testing_button.place(relx=0.75, rely=0.3, anchor=tk.CENTER)
-        self.dictionary_button.place(relx=0.25, rely=0.7, anchor=tk.CENTER)
-        self.progress_button.place(relx=0.75, rely=0.7, anchor=tk.CENTER)
+        self.training_button = StyledButton(self.canvas, 200, 200, text="Обучение", command=self.open_training_window)
+        self.testing_button = StyledButton(self.canvas, 600, 200, text="Тестирование", command=self.open_testing_window)
+        self.dictionary_button = StyledButton(self.canvas, 200, 400, text="Словарь",
+                                              command=self.open_dictionary_window)
+        self.progress_button = StyledButton(self.canvas, 600, 400, text="Прогресс", command=self.open_progress_window)
 
     def open_training_window(self):
         from training_window import TrainingWindow

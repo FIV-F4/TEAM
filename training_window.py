@@ -2,7 +2,7 @@ import tkinter as tk
 import sqlite3
 from main import BaseWindow
 from lessons import Lessons
-
+from styles import StyledCanvas, StyledButton
 
 class TrainingWindow(BaseWindow):
     def __init__(self, root, main_root, current_user):
@@ -11,9 +11,12 @@ class TrainingWindow(BaseWindow):
 
         self.current_user = current_user
 
-        # Создаем основной лейбл
-        self.main_label = tk.Label(root, text="Обучение", font=("Arial", 24))
-        self.main_label.place(relx=0.5, rely=0.2, anchor=tk.CENTER)
+        # Создаем холст для фона
+        self.canvas = StyledCanvas(self.root)
+        self.canvas.pack(fill=tk.BOTH, expand=True)
+
+        # Создаем основной текст на холсте
+        self.canvas.create_text(400, 50, text="Обучение", font=("Helvetica", 24), fill="black")
 
         # Подключаемся к базе данных и получаем названия тем
         self.topics = self.get_topics_from_db()
@@ -23,26 +26,15 @@ class TrainingWindow(BaseWindow):
             self.topics.append("N/A")
 
         # Создаем кнопки с текстом из базы данных
-        self.lesson1_button = tk.Button(root, text=f"Урок ({self.topics[0]})", width=20, height=5,
-                                        command=lambda: self.start_lesson(self.topics[0]))
-        self.lesson2_button = tk.Button(root, text=f"Урок ({self.topics[1]})", width=20, height=5,
-                                        command=lambda: self.start_lesson(self.topics[1]))
-        self.lesson3_button = tk.Button(root, text=f"Урок ({self.topics[2]})", width=20, height=5,
-                                        command=lambda: self.start_lesson(self.topics[2]))
-        self.lesson4_button = tk.Button(root, text=f"Урок ({self.topics[3]})", width=20, height=5,
-                                        command=lambda: self.start_lesson(self.topics[3]))
-        self.back_button = tk.Button(root, text="Назад", width=10, height=2, command=self.go_back_main)
-        self.forward_button = tk.Button(root, text="Вперед", width=10, height=2, command=self.open_testing_window)
-        self.exit_button = tk.Button(root, text="Выход", width=10, height=2, command=self.exit_program)
+        self.lesson1_button = StyledButton(self.canvas, 200, 200, text=f"Урок ({self.topics[0]})", command=lambda: self.start_lesson(self.topics[0]))
+        self.lesson2_button = StyledButton(self.canvas, 600, 200, text=f"Урок ({self.topics[1]})", command=lambda: self.start_lesson(self.topics[1]))
+        self.lesson3_button = StyledButton(self.canvas, 200, 400, text=f"Урок ({self.topics[2]})", command=lambda: self.start_lesson(self.topics[2]))
+        self.lesson4_button = StyledButton(self.canvas, 600, 400, text=f"Урок ({self.topics[3]})", command=lambda: self.start_lesson(self.topics[3]))
 
-        # Размещаем кнопки
-        self.lesson1_button.place(relx=0.25, rely=0.4, anchor=tk.CENTER)
-        self.lesson2_button.place(relx=0.75, rely=0.4, anchor=tk.CENTER)
-        self.lesson3_button.place(relx=0.25, rely=0.6, anchor=tk.CENTER)
-        self.lesson4_button.place(relx=0.75, rely=0.6, anchor=tk.CENTER)
-        self.back_button.place(relx=0.2, rely=0.8, anchor=tk.CENTER)
-        self.forward_button.place(relx=0.8, rely=0.8, anchor=tk.CENTER)
-        self.exit_button.place(relx=0.5, rely=0.8, anchor=tk.CENTER)
+        # Создаем навигационные кнопки с меньшими размерами
+        self.back_button = StyledButton(self.canvas, 200, 500, text="Назад", command=self.go_back_main, width=100, height=40)
+        self.forward_button = StyledButton(self.canvas, 600, 500, text="Вперед", command=self.open_testing_window, width=100, height=40)
+        self.exit_button = StyledButton(self.canvas, 400, 500, text="Выход", command=self.exit_program, width=100, height=40)
 
     def get_topics_from_db(self):
         conn = sqlite3.connect('team_app.db')  # Укажите путь к вашей базе данных
