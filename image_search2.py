@@ -1,88 +1,67 @@
-import os
-import requests
-from bs4 import BeautifulSoup
-from PIL import Image
-from io import BytesIO
-import urllib.parse
+import pygame
+import sys
 
-# Путь к вашему текстовому файлу и папке для сохранения изображений
-txt_file_path = 'db_operator/src/food.txt'
-output_folder = 'db_operator/multimedia/img/food2'
+# Инициализация Pygame
+pygame.init()
 
-# Убедитесь, что папка для изображений существует
-os.makedirs(output_folder, exist_ok=True)
+# Размеры окна
+WIDTH, HEIGHT = 800, 600
+window = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Simple Platformer Game")
 
+# Цвета
+WHITE = (255, 255, 255)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
 
-def download_image(word, url, output_path):
-    try:
-        print(f"Attempting to download image for '{word}' from URL: {url}")
-        response = requests.get(url)
-        response.raise_for_status()
-        image = Image.open(BytesIO(response.content))
-        image.save(output_path, 'PNG')
-        print(f"Image for '{word}' saved as {output_path}")
-    except Exception as e:
-        print(f"Failed to download image for '{word}': {e}")
+# Игрок
+player_size = 50
+player_pos = [WIDTH // 2, HEIGHT - player_size]
+player_speed = 10
 
+# Платформы
+platform_width = 100
+platform_height = 20
+platform_color = BLUE
+platforms = [
+    pygame.Rect(200, 500, platform_width, platform_height),
+    pygame.Rect(400, 400, platform_width, platform_height),
+    pygame.Rect(600, 300, platform_width, platform_height)
+]
 
-def search_image_url(word):
-    try:
-        print(f"Searching for image URL for '{word}'")
-        search_query = urllib.parse.quote(word)
-        url = f"https://www.bing.com/images/search?q={search_query}&form=HDRSC2&first=1&tsc=ImageBasicHover"
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36'
-        }
+# Главный цикл игры
+clock = pygame.time.Clock()
+running = True
 
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
+while running:
+    # Обработка событий
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
 
-        soup = BeautifulSoup(response.text, 'html.parser')
-        image_elements = soup.select('a.iusc')
-        for a in image_elements:
-            m = a.get('m')
-            if m:
-                image_url = eval(m).get('murl')
-                if image_url and image_url.startswith('http'):
-                    print(f"Found image URL for '{word}': {image_url}")
-                    return image_url
-        print(f"No valid image URL found for '{word}'")
-        return None
-    except Exception as e:
-        print(f"Error while searching for image URL for '{word}': {e}")
-        return None
+    # Управление игроком
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT] and player_pos[0] > 0:
+        player_pos[0] -= player_speed
+    if keys[pygame.K_RIGHT] and player_pos[0] < WIDTH - player_size:
+        player_pos[0] += player_speed
+    if keys[pygame.K_UP] and player_pos[1] > 0:
+        player_pos[1] -= player_speed
+    if keys[pygame.K_DOWN] and player_pos[1] < HEIGHT - player_size:
+        player_pos[1] += player_speed
 
+    # Проверка столкновений с платформами
+    player_rect = pygame.Rect(player_pos[0], player_pos[1], player_size, player_size)
+    for platform in platforms:
+        if player_rect.colliderect(platform):
+            player_pos[1] = platform.top - player_size
 
-def read_words_and_download_images(txt_file_path, output_folder):
-    if not os.path.exists(txt_file_path):
-        print(f"File not found: {txt_file_path}")
-        return
+    # Отрисовка
+    window.fill(WHITE)
+    pygame.draw.rect(window, GREEN, player_rect)
+    for platform in platforms:
+        pygame.draw.rect(window, platform_color, platform)
 
-    print(f"Reading words from file: {txt_file_path}")
-    try:
-        with open(txt_file_path, 'r', encoding='utf-8') as file:
-            lines = file.readlines()
-            print(f"Found {len(lines)} lines in file.")
-            if not lines:
-                print(f"No words found in file: {txt_file_path}")
-                return
-
-            for line in lines:
-                parts = line.strip().split(' - ')
-                if len(parts) == 2:
-                    russian_word, english_word = parts
-                    print(f"Processing word pair: {russian_word} -> {english_word}")
-                    image_url = search_image_url(english_word)
-                    if image_url:
-                        output_path = os.path.join(output_folder, f"{english_word}.png")
-                        download_image(english_word, image_url, output_path)
-                    else:
-                        print(f"Skipping download for '{english_word}' as no valid image URL was found")
-                else:
-                    print(f"Invalid line format: {line}")
-    except Exception as e:
-        print(f"Error reading file: {e}")
-
-
-# Запуск основной функции
-read_words_and_download_images(txt_file_path, output_folder)
+    pygame.display.flip()
+    clock.tick(30)
