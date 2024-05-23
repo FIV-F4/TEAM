@@ -1,6 +1,6 @@
 import tkinter as tk
 from main import BaseWindow
-
+from styles import StyledCanvas, StyledButton
 
 class TestingWindow(BaseWindow):
     def __init__(self, root, main_root, current_user):
@@ -9,27 +9,23 @@ class TestingWindow(BaseWindow):
 
         self.current_user = current_user
 
-        # Создаем основной лейбл
-        self.main_label = tk.Label(root, text="Тестирование по темам", font=("Arial", 24))
-        self.main_label.place(relx=0.5, rely=0.2, anchor=tk.CENTER)
+        # Создаем холст для фона
+        self.canvas = StyledCanvas(self.root)
+        self.canvas.pack(fill=tk.BOTH, expand=True)
 
-        # Создаем кнопки
-        self.var1_button = tk.Button(root, text="Тестирование (вар.1)", width=20, height=5)
-        self.var2_button = tk.Button(root, text="Тестирование (вар.2)", width=20, height=5)
-        self.var3_button = tk.Button(root, text="Тестирование (вар.3)", width=20, height=5)
-        self.var4_button = tk.Button(root, text="Тестирование (вар.4)", width=20, height=5)
-        self.back_button = tk.Button(root, text="Назад", width=10, height=2, command=self.go_back_training)
-        self.forward_button = tk.Button(root, text="Вперед", width=10, height=2, command=self.open_dictionary_window)
-        self.exit_button = tk.Button(root, text="Выход", width=10, height=2, command=self.exit_program)
+        # Создаем основной текст на холсте
+        self.canvas.create_text(400, 50, text="Тестирование по темам", font=("Helvetica", 24), fill="black")
 
-        # Размещаем кнопки
-        self.var1_button.place(relx=0.25, rely=0.4, anchor=tk.CENTER)
-        self.var2_button.place(relx=0.75, rely=0.4, anchor=tk.CENTER)
-        self.var3_button.place(relx=0.25, rely=0.6, anchor=tk.CENTER)
-        self.var4_button.place(relx=0.75, rely=0.6, anchor=tk.CENTER)
-        self.back_button.place(relx=0.2, rely=0.8, anchor=tk.CENTER)
-        self.forward_button.place(relx=0.8, rely=0.8, anchor=tk.CENTER)
-        self.exit_button.place(relx=0.5, rely=0.8, anchor=tk.CENTER)
+        # Создаем кнопки с текстом
+        self.var1_button = StyledButton(self.canvas, 200, 200, text="Тестирование (вар.1)")
+        self.var2_button = StyledButton(self.canvas, 600, 200, text="Тестирование (вар.2)")
+        self.var3_button = StyledButton(self.canvas, 200, 400, text="Тестирование (вар.3)")
+        self.var4_button = StyledButton(self.canvas, 600, 400, text="Тестирование (вар.4)")
+
+        # Создаем навигационные кнопки с меньшими размерами
+        self.back_button = StyledButton(self.canvas, 200, 500, text="Назад", command=self.go_back_training, width=100, height=40)
+        self.forward_button = StyledButton(self.canvas, 600, 500, text="Вперед", command=self.open_dictionary_window, width=100, height=40)
+        self.exit_button = StyledButton(self.canvas, 400, 500, text="Выход", command=self.exit_program, width=100, height=40)
 
     def go_back_training(self):
         from training_window import TrainingWindow
