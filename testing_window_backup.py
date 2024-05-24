@@ -1,5 +1,4 @@
 import tkinter as tk
-from main import BaseWindow
 from tkinter import messagebox
 from PIL import Image, ImageTk
 import sqlite3
@@ -9,52 +8,10 @@ import pygame
 import os
 import speech_recognition as sr
 from main import BaseWindow
-
-class TestingWindow(BaseWindow):
-    def __init__(self, root, main_root, current_user):
-        super().__init__(root, main_root, current_user)
-        self.root.title("Программа обучения английскому языку - Тестирование")
-
-        self.current_user = current_user
-
-        # Создаем основной лейбл
-        self.main_label = tk.Label(root, text="Тестирование по темам", font=("Arial", 24))
-        self.main_label.place(relx=0.5, rely=0.2, anchor=tk.CENTER)
-
-        # Создаем кнопки
-        self.var1_button = tk.Button(root, text="Тестирование (вар.1)", width=20, height=5)
-        self.var2_button = tk.Button(root, text="Тестирование (вар.2)", width=20, height=5)
-        self.var3_button = tk.Button(root, text="Тестирование (вар.3)", width=20, height=5)
-        self.var4_button = tk.Button(root, text="Тестирование (вар.4)", width=20, height=5)
-        self.back_button = tk.Button(root, text="Назад", width=10, height=2, command=self.go_back_training)
-        self.forward_button = tk.Button(root, text="Вперед", width=10, height=2, command=self.open_dictionary_window)
-        self.exit_button = tk.Button(root, text="Выход", width=10, height=2, command=self.exit_program)
-
-        # Размещаем кнопки
-        self.var1_button.place(relx=0.25, rely=0.4, anchor=tk.CENTER)
-        self.var2_button.place(relx=0.75, rely=0.4, anchor=tk.CENTER)
-        self.var3_button.place(relx=0.25, rely=0.6, anchor=tk.CENTER)
-        self.var4_button.place(relx=0.75, rely=0.6, anchor=tk.CENTER)
-        self.back_button.place(relx=0.2, rely=0.8, anchor=tk.CENTER)
-        self.forward_button.place(relx=0.8, rely=0.8, anchor=tk.CENTER)
-        self.exit_button.place(relx=0.5, rely=0.8, anchor=tk.CENTER)
-
-    def go_back_training(self):
-        from training_window import TrainingWindow
-        self.go_back(TrainingWindow)
-
-    def open_dictionary_window(self):
-        from dictionary_window import DictionaryWindow
-        self.open_new_window(DictionaryWindow)
+from styles import StyledCanvas, StyledButton, PlacedStyledButton
 
 
-
-#
-#
-#
-#
-#
-#
+pygame.mixer.init()  # Инициализация pygame.mixer
 
 # Глобальная переменная для активного пользователя
 ACTIVE_USER = {}
@@ -78,7 +35,6 @@ def load_active_user():
 
 # Загрузка активного пользователя при старте программы
 load_active_user()
-pygame.mixer.init()  # Инициализация pygame.mixer
 
 class TopicSelectionScreen:
     def __init__(self, master, on_start_test):
@@ -93,8 +49,10 @@ class TopicSelectionScreen:
     def setup_ui(self):
         self.clear_window()
         self.master.geometry('800x600')
-        self.master.configure(bg='#f0f0f0')
         self.master.title("Выбор темы урока")
+
+        self.canvas = StyledCanvas(self.master)
+        self.canvas.pack(fill=tk.BOTH, expand=True)
 
         self.top_frame = tk.Frame(self.master, height=50, bg='white')
         self.top_frame.pack(fill=tk.X)
@@ -106,34 +64,21 @@ class TopicSelectionScreen:
         self.title_label = tk.Label(self.top_frame, text="Выберите тему урока", font=('Helvetica', 24, 'bold'), bg='white')
         self.title_label.pack(pady=10)
 
-        self.topic_frame = tk.Frame(self.master, bg='#f0f0f0')
-        self.topic_frame.pack(side=tk.LEFT, padx=20, pady=20, anchor=tk.N)
-
         topics = self.load_topics()
-        for topic in topics:
-            topic_button = tk.Button(self.topic_frame, text=topic[1], font=('Helvetica', 18),
-                                     command=lambda t=topic: self.select_topic(t), width=25, relief=tk.RAISED)
-            topic_button.pack(pady=5)
+        for idx, topic in enumerate(topics):
+            topic_button = StyledButton(self.canvas, text=topic[1], command=lambda t=topic: self.select_topic(t), x=150, y=150 + idx*80, width=250, height=60)
             self.topic_buttons[topic[0]] = topic_button
 
-        self.test_frame = tk.Frame(self.master, bg='#f0f0f0')
-        self.test_frame.pack(side=tk.RIGHT, padx=20, pady=20, anchor=tk.N)
-
         tests = self.load_tests()
-        for test in tests:
-            test_button = tk.Button(self.test_frame, text=test[1], font=('Helvetica', 18),
-                                    command=lambda t=test: self.select_test(t), width=25, relief=tk.RAISED)
-            test_button.pack(pady=5)
+        for idx, test in enumerate(tests):
+            test_button = StyledButton(self.canvas, text=test[1], command=lambda t=test: self.select_test(t), x=650, y=150 + idx*80, width=250, height=60)
             self.test_buttons[test[0]] = test_button
 
-        self.start_button = tk.Button(self.master, text="Начать тестирование", command=self.start_test, font=('Helvetica', 16, 'bold'))
-        self.start_button.place(relx=0.5, rely=0.95, anchor=tk.S)
+        self.start_button = StyledButton(self.canvas, text="Начать тестирование", command=self.start_test, x=400, y=500, width=250, height=60)
 
-        self.exit_button = tk.Button(self.master, text="Выход", command=self.master.quit, font=('Helvetica', 12))
-        self.exit_button.place(x=750, y=550, anchor=tk.SE)
+        self.exit_button = StyledButton(self.canvas, text="Выход", command=self.master.quit, x=750, y=550, width=100, height=50)
 
-        self.back_button = tk.Button(self.master, text="Назад", state=tk.DISABLED, font=('Helvetica', 12))
-        self.back_button.place(x=50, y=550, anchor=tk.SW)
+        self.back_button = StyledButton(self.canvas, text="Назад", command=self.master.quit, x=50, y=550, width=100, height=50)
 
     def show_user_info(self):
         global ACTIVE_USER
@@ -181,20 +126,46 @@ class TopicSelectionScreen:
     def select_topic(self, topic):
         self.selected_topic = topic
         for btn in self.topic_buttons.values():
-            btn.config(relief=tk.RAISED, bg='#f0f0f0')
-        self.topic_buttons[topic[0]].config(relief=tk.SUNKEN, bg='#d3d3d3')
+            btn.set_image(btn.normal_photo)
+        self.topic_buttons[topic[0]].set_image(self.topic_buttons[topic[0]].pressed_photo)
 
     def select_test(self, test):
         self.selected_test = test
         for btn in self.test_buttons.values():
-            btn.config(relief=tk.RAISED, bg='#f0f0f0')
-        self.test_buttons[test[0]].config(relief=tk.SUNKEN, bg='#d3d3d3')
+            btn.set_image(btn.normal_photo)
+        self.test_buttons[test[0]].set_image(self.test_buttons[test[0]].pressed_photo)
 
     def start_test(self):
         if self.selected_topic and self.selected_test:
             self.on_start_test(self.selected_topic, self.selected_test)
         else:
             messagebox.showwarning("Предупреждение", "Пожалуйста, выберите тему и тест.")
+
+class MainTestApp:
+    def __init__(self, root):
+        self.root = root
+        self.show_topic_selection_screen()
+
+    def show_topic_selection_screen(self):
+        self.topic_selection_screen = TopicSelectionScreen(self.root, self.start_lesson)
+
+    def start_lesson(self, topic, test):
+        lesson_window = tk.Toplevel(self.root)
+        test_type = test[2]
+        if test_type == 1:
+            WordLessonScreen(lesson_window, topic, test)
+        elif test_type == 2:
+            WordWriteScreen(lesson_window, topic, test)
+        elif test_type == 3:
+            WordAudioScreen(lesson_window, topic, test)
+        elif test_type == 4:
+            WordSpeakScreen(lesson_window, topic, test)
+
+class TestingWindow(BaseWindow):
+    def __init__(self, root, main_root, current_user):
+        super().__init__(root, main_root, current_user)
+        self.root.title("Программа обучения английскому языку - Тестирование")
+        self.app = MainTestApp(self.root)
 
 class BaseLessonScreen:
     def __init__(self, master, topic, test):
@@ -213,6 +184,9 @@ class BaseLessonScreen:
         self.master.minsize(800, 600)
         self.master.maxsize(800, 600)
         self.master.title(f"Тема: {self.topic[1]}")
+
+        self.canvas = StyledCanvas(self.master)
+        self.canvas.pack(fill=tk.BOTH, expand=True)
 
         self.top_frame = tk.Frame(self.master, height=50, bg='white')
         self.top_frame.pack(fill=tk.X)
@@ -237,11 +211,8 @@ class BaseLessonScreen:
         self.word_label = tk.Label(self.master, font=('Helvetica', 24, 'bold'))
         self.word_label.pack(pady=10)
 
-        self.prev_button = tk.Button(self.master, text="Предыдущее слово", command=self.prev_word, font=('Helvetica', 12), state=tk.DISABLED)
-        self.prev_button.place(x=10, y=350, anchor=tk.W)
-
-        self.next_button = tk.Button(self.master, text="Следующее слово", command=self.next_word, font=('Helvetica', 12))
-        self.next_button.place(x=790, y=350, anchor=tk.E)
+        self.prev_button = StyledButton(self.canvas, text="Предыдущее слово", command=self.prev_word, x=100, y=500, width=200, height=50)
+        self.next_button = StyledButton(self.canvas, text="Следующее слово", command=self.next_word, x=700, y=500, width=200, height=50)
 
         self.buttons_frame = tk.Frame(self.master)
         self.buttons_frame.pack(pady=10)
@@ -249,11 +220,8 @@ class BaseLessonScreen:
         self.message_label = tk.Label(self.master, font=('Helvetica', 16, 'bold'))
         self.message_label.pack(pady=10)
 
-        self.exit_button = tk.Button(self.master, text="Выход", command=self.master.quit, font=('Helvetica', 12))
-        self.exit_button.place(x=790, y=590, anchor=tk.SE)
-
-        self.back_button = tk.Button(self.master, text="Выбрать тест", command=self.return_to_selection, font=('Helvetica', 12))
-        self.back_button.place(x=10, y=590, anchor=tk.SW)
+        self.exit_button = StyledButton(self.canvas, text="Выход", command=self.master.quit, x=750, y=550, width=100, height=50)
+        self.back_button = StyledButton(self.canvas, text="Выбрать тест", command=self.return_to_selection, x=50, y=550, width=100, height=50)
 
     def show_user_info(self):
         global ACTIVE_USER
@@ -309,6 +277,7 @@ class BaseLessonScreen:
         try:
             with open("temp_sound.mp3", "wb") as f:
                 f.write(sound_data)
+            pygame.mixer.init()
             pygame.mixer.music.load("temp_sound.mp3")
             pygame.mixer.music.play()
             pygame.mixer.music.set_endevent(pygame.USEREVENT)
@@ -325,6 +294,8 @@ class BaseLessonScreen:
 
     def cleanup_temp_file(self, event=None):
         try:
+            pygame.mixer.music.stop()
+            pygame.mixer.quit()
             if os.path.exists("temp_sound.mp3"):
                 os.remove("temp_sound.mp3")
         except Exception as e:
@@ -377,22 +348,39 @@ class WordLessonScreen(BaseLessonScreen):
             self.image_label.image = photo
             self.word_label.config(text=russian)
 
-            for widget in self.buttons_frame.winfo_children():
-                widget.destroy()
+            for widget in self.canvas.winfo_children():
+                if isinstance(widget, PlacedStyledButton):
+                    widget.destroy()
 
             all_words = [word[0] for word in self.all_words if word[0] != english]
             random_words = random.sample(all_words, 5)
             random_words.append(english)
             random.shuffle(random_words)
 
-            for btn_text in random_words:
-                btn = tk.Button(self.buttons_frame, text=btn_text, font=('Helvetica', 12),
-                                command=lambda b=btn_text, s=sound_data: self.check_answer(b, english, s))
-                btn.pack(side=tk.LEFT, padx=5)
+            # Добавляем изображение на холст
+            self.canvas.create_image(400, 200, image=photo, anchor=tk.CENTER)
+
+            for idx, btn_text in enumerate(random_words):
+                btn = PlacedStyledButton(self.canvas, text=btn_text,
+                                         command=lambda b=btn_text, s=sound_data: self.check_answer(b, english, s),
+                                         x=150 + idx * 150, y=450, width=120, height=50)
+                self.canvas.create_window(150 + idx * 150, 450, window=btn)
+
+            # Добавляем другие элементы на холст
+            self.prev_button = PlacedStyledButton(self.canvas, text="Предыдущее слово", command=self.prev_word, x=100, y=550, width=200, height=50)
+            self.next_button = PlacedStyledButton(self.canvas, text="Следующее слово", command=self.next_word, x=400, y=550, width=200, height=50)
+            self.exit_button = PlacedStyledButton(self.canvas, text="Выход", command=self.master.quit, x=700, y=550, width=100, height=50)
+            self.back_button = PlacedStyledButton(self.canvas, text="Выбрать тест", command=self.return_to_selection, x=100, y=500, width=200, height=50)
+
+            self.canvas.create_window(100, 550, window=self.prev_button)
+            self.canvas.create_window(400, 550, window=self.next_button)
+            self.canvas.create_window(700, 550, window=self.exit_button)
+            self.canvas.create_window(100, 500, window=self.back_button)
 
     def check_answer(self, chosen, correct, sound_data):
-        for btn in self.buttons_frame.winfo_children():
-            btn.config(state=tk.DISABLED)
+        for widget in self.canvas.winfo_children():
+            if isinstance(widget, PlacedStyledButton):
+                widget.config(state=tk.DISABLED)
 
         if chosen == correct:
             self.score += 1
@@ -421,12 +409,20 @@ class WordLessonScreen(BaseLessonScreen):
 
     def end_test(self):
         self.message_label.config(text=f"Тест окончен! Ваши баллы: {self.score}/8", fg='black')
-        for btn in self.buttons_frame.winfo_children():
-            btn.config(state=tk.DISABLED)
+        for widget in self.canvas.winfo_children():
+            if isinstance(widget, PlacedStyledButton):
+                widget.config(state=tk.DISABLED)
         self.prev_button.config(state=tk.DISABLED)
         self.next_button.config(state=tk.DISABLED)
         self.save_test_result()
 
+
+
+
+
+
+# Повторите ту же процедуру для WordWriteScreen, WordAudioScreen и WordSpeakScreen
+# ...
 class WordWriteScreen(BaseLessonScreen):
     def __init__(self, master, topic, test):
         super().__init__(master, topic, test)
@@ -464,14 +460,17 @@ class WordWriteScreen(BaseLessonScreen):
             for widget in self.buttons_frame.winfo_children():
                 widget.destroy()
 
-            input_label = tk.Label(self.buttons_frame, text="Введите это слово на английском языке:", font=('Helvetica', 12))
+            input_label = tk.Label(self.buttons_frame, text="Введите это слово на английском языке:",
+                                   font=('Helvetica', 12))
             input_label.pack(pady=5)
 
             self.input_entry = tk.Entry(self.buttons_frame, font=('Helvetica', 12))
             self.input_entry.pack(pady=5)
 
-            check_button = tk.Button(self.buttons_frame, text="Проверить", font=('Helvetica', 12),
-                                     command=lambda s=sound_data: self.check_answer(self.input_entry.get(), english, s))
+            check_button = PlacedStyledButton(self.buttons_frame, text="Проверить",
+                                              command=lambda s=sound_data: self.check_answer(self.input_entry.get(),
+                                                                                             english, s),
+                                              width=200, height=50)
             check_button.pack(pady=5)
 
     def check_answer(self, chosen, correct, sound_data):
@@ -545,8 +544,9 @@ class WordAudioScreen(BaseLessonScreen):
             for widget in self.buttons_frame.winfo_children():
                 widget.destroy()
 
-            play_audio_button = tk.Button(self.buttons_frame, text="Воспроизвести аудио", font=('Helvetica', 24),
-                                          command=lambda s=sound_data: self.play_sound(s))
+            play_audio_button = PlacedStyledButton(self.buttons_frame, text="Воспроизвести аудио",
+                                                   command=lambda s=sound_data: self.play_sound(s),
+                                                   width=200, height=50)
             play_audio_button.pack(pady=5)
 
             all_words = [word[1] for word in self.all_words if word[1] != russian]
@@ -554,10 +554,11 @@ class WordAudioScreen(BaseLessonScreen):
             random_words.append(russian)
             random.shuffle(random_words)
 
-            for btn_text in random_words:
-                btn = tk.Button(self.buttons_frame, text=btn_text, font=('Helvetica', 12),
-                                command=lambda b=btn_text: self.check_answer(b, russian, sound_data))
-                btn.pack(side=tk.LEFT, padx=5)
+            for idx, btn_text in enumerate(random_words):
+                btn = PlacedStyledButton(self.buttons_frame, text=btn_text,
+                                         command=lambda b=btn_text: self.check_answer(b, russian, sound_data),
+                                         width=200, height=50)
+                btn.pack(side=tk.LEFT, padx=5, pady=5)
 
     def check_answer(self, chosen, correct, sound_data):
         for btn in self.buttons_frame.winfo_children():
@@ -635,8 +636,9 @@ class WordSpeakScreen(BaseLessonScreen):
             for widget in self.buttons_frame.winfo_children():
                 widget.destroy()
 
-            speak_button = tk.Button(self.buttons_frame, text="Произнесите слово на английском", font=('Helvetica', 12),
-                                     command=lambda: self.recognize_speech(english, sound_data))
+            speak_button = PlacedStyledButton(self.buttons_frame, text="Произнесите слово на английском",
+                                              command=lambda: self.recognize_speech(english, sound_data),
+                                              width=250, height=60)
             speak_button.pack(pady=5)
 
     def recognize_speech(self, correct_word, sound_data):
@@ -682,27 +684,8 @@ class WordSpeakScreen(BaseLessonScreen):
         self.next_button.config(state=tk.DISABLED)
         self.save_test_result()
 
-class MainTestApp:
-    def __init__(self, root):
-        self.root = root
-        self.show_topic_selection_screen()
-
-    def show_topic_selection_screen(self):
-        self.topic_selection_screen = TopicSelectionScreen(self.root, self.start_lesson)
-
-    def start_lesson(self, topic, test):
-        lesson_window = tk.Toplevel(self.root)
-        test_type = test[2]
-        if test_type == 1:
-            WordLessonScreen(lesson_window, topic, test)
-        elif test_type == 2:
-            WordWriteScreen(lesson_window, topic, test)
-        elif test_type == 3:
-            WordAudioScreen(lesson_window, topic, test)
-        elif test_type == 4:
-            WordSpeakScreen(lesson_window, topic, test)
-
 if __name__ == "__main__":
     root = tk.Tk()
     app = MainTestApp(root)
+    root.mainloop()
 

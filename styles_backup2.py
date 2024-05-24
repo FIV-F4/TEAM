@@ -53,25 +53,3 @@ class StyledButton:
     def set_image(self, image):
         self.canvas.itemconfig(self.button_id, image=image)
         self.normal_photo = image
-
-class PlacedStyledButton(tk.Button):
-    def __init__(self, master=None, x=None, y=None, width=None, height=None, **kwargs):
-        super().__init__(master, **kwargs)
-        self.configure(font=('Helvetica', 12), bg='#f0f0f0', relief=tk.RAISED)
-        self.place(x=x, y=y, width=width, height=height)
-
-    def set_normal(self):
-        self.configure(relief=tk.RAISED, bg='#f0f0f0')
-
-    def set_hovered(self):
-        self.configure(relief=tk.RAISED, bg='#d3d3d3')
-
-    def set_clicked(self):
-        self.configure(relief=tk.SUNKEN, bg='#d3d3d3')
-
-    def on_button_press(self, event):
-        self.set_clicked()
-
-    def on_button_release(self, event):
-        self.set_normal()
-        self.command()
