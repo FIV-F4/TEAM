@@ -9,7 +9,6 @@ def center_window(window, width=800, height=600):
     window.minsize(800, 600)
     window.maxsize(800, 600)
 
-
 # Базовый класс окна
 class BaseWindow:
     def __init__(self, root, main_root, current_user):
@@ -21,7 +20,7 @@ class BaseWindow:
         self.root.protocol("WM_DELETE_WINDOW", self.exit_program)
 
     def go_back(self, new_window_class, *args):
-        self.root.destroy()
+        self.root.withdraw()  # Скрываем текущее окно
         new_window = tk.Toplevel(self.main_root)
         new_window_class(new_window, self.main_root, self.current_user, *args)
 
@@ -36,7 +35,6 @@ class BaseWindow:
             self.main_root.destroy()
         else:
             self.root.destroy()
-
 
 if __name__ == "__main__":
     from login import LoginWindow
