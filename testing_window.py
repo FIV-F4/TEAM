@@ -9,6 +9,7 @@ import speech_recognition as sr
 from main import BaseWindow
 from styles import StyledCanvas, StyledButton, TransparentLabel
 
+
 # Глобальная переменная для активного пользователя
 ACTIVE_USER = {}
 
@@ -176,6 +177,7 @@ class BaseLessonScreen(BaseWindow):
         except Exception as e:
             messagebox.showerror("Ошибка воспроизведения звука", f"Не удалось воспроизвести звук: {e}")
 
+            
     def save_test_result(self):
         global ACTIVE_USER
         try:

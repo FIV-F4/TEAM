@@ -28,7 +28,6 @@ class StyledButton:
     def __init__(self, canvas, x, y, text="", command=None, width=250, height=60):
         self.canvas = canvas
         self.command = command
-        self.enabled = True
         self.normal_image = Image.open(NORMAL_BUTTON_IMAGE_PATH).convert("RGBA").resize((width, height), Image.LANCZOS)
         self.pressed_image = Image.open(PRESSED_BUTTON_IMAGE_PATH).convert("RGBA").resize((width, height), Image.LANCZOS)
 
@@ -44,56 +43,13 @@ class StyledButton:
         self.canvas.tag_bind(self.text_id, "<ButtonRelease-1>", self.on_button_release)
 
     def on_button_press(self, event):
-        if self.enabled:
-            self.canvas.itemconfig(self.button_id, image=self.pressed_photo)
+        self.canvas.itemconfig(self.button_id, image=self.pressed_photo)
 
     def on_button_release(self, event):
-        if self.enabled:
-            self.canvas.itemconfig(self.button_id, image=self.normal_photo)
-            if self.command:
-                self.command()
+        self.canvas.itemconfig(self.button_id, image=self.normal_photo)
+        if self.command:
+            self.command()
 
     def set_image(self, image):
         self.canvas.itemconfig(self.button_id, image=image)
         self.normal_photo = image
-
-    def enable(self):
-        self.enabled = True
-
-    def disable(self):
-        self.enabled = False
-
-
-class TransparentLabel:
-    def __init__(self, canvas, x, y, text="", font=("Helvetica", 16), fill="black"):
-        self.canvas = canvas
-        self.text_id = self.canvas.create_text(x, y, text=text, font=font, fill=fill)
-
-    def update_text(self, text):
-        self.canvas.itemconfig(self.text_id, text=text)
-
-    def set_fill(self, color):
-        self.canvas.itemconfig(self.text_id, fill=color)
-
-
-class PlacedStyledButton(tk.Button):
-    def __init__(self, master=None, x=None, y=None, width=None, height=None, **kwargs):
-        super().__init__(master, **kwargs)
-        self.configure(font=('Helvetica', 12), bg='#f0f0f0', relief=tk.RAISED)
-        self.place(x=x, y=y, width=width, height=height)
-
-    def set_normal(self):
-        self.configure(relief=tk.RAISED, bg='#f0f0f0')
-
-    def set_hovered(self):
-        self.configure(relief=tk.RAISED, bg='#d3d3d3')
-
-    def set_clicked(self):
-        self.configure(relief=tk.SUNKEN, bg='#d3d3d3')
-
-    def on_button_press(self, event):
-        self.set_clicked()
-
-    def on_button_release(self, event):
-        self.set_normal()
-        self.command()
