@@ -1,0 +1,831 @@
+{
+  "files": [
+    {
+      "file": "AudioGen.py",
+      "classes": [],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "check_achievement_db.py",
+      "classes": [],
+      "functions": [
+        {
+          "name": "check_achievement_db",
+          "parameters": [],
+          "returns": "None"
+        }
+      ],
+      "attributes": []
+    },
+    {
+      "file": "check_achievement_db.py",
+      "classes": [],
+      "functions": [
+        {
+          "name": "check_achievement_db",
+          "parameters": [],
+          "returns": "None"
+        }
+      ],
+      "attributes": []
+    },
+    {
+      "file": "db_operator.py",
+      "classes": [
+        {
+          "name": "DBOperator",
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": ["db_path"],
+              "returns": "None"
+            },
+            {
+              "name": "execute_query",
+              "parameters": ["query", "params"],
+              "returns": "list"
+            },
+            {
+              "name": "execute_non_query",
+              "parameters": ["query", "params"],
+              "returns": "None"
+            }
+          ]
+        }
+      ],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "DB_script.py",
+      "classes": [],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "demo_db.py",
+      "classes": [],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "Design.py",
+      "classes": [],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "dictionary_window.py",
+      "classes": [
+        {
+          "name": "DictionaryWindow",
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": ["root", "main_root", "current_user"],
+              "returns": "None"
+            },
+            {
+              "name": "setup_ui",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "show_words",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "go_back",
+              "parameters": [],
+              "returns": "None"
+            }
+          ]
+        }
+      ],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "FlipCard.py",
+      "classes": [],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "image_search.py",
+      "classes": [],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "image_search2.py",
+      "classes": [],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "lessons.py",
+      "classes": [],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "login.py",
+      "classes": [
+        {
+          "name": "LoginWindow",
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": ["root", "main_root", "current_user"],
+              "returns": "None"
+            },
+            {
+              "name": "setup_ui",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "login",
+              "parameters": [],
+              "returns": "None"
+            }
+          ]
+        }
+      ],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "main.py",
+      "classes": [
+        {
+          "name": "BaseWindow",
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": ["root", "main_root", "current_user"],
+              "returns": "None"
+            },
+            {
+              "name": "go_back",
+              "parameters": ["new_window_class", "*args"],
+              "returns": "None"
+            },
+            {
+              "name": "open_new_window",
+              "parameters": ["new_window_class", "*args"],
+              "returns": "None"
+            },
+            {
+              "name": "exit_program",
+              "parameters": [],
+              "returns": "None"
+            }
+          ]
+        }
+      ],
+      "functions": [
+        {
+          "name": "center_window",
+          "parameters": ["window", "width=800", "height=600"],
+          "returns": "None"
+        }
+      ],
+      "attributes": []
+    },
+    {
+      "file": "main_old.py",
+      "classes": [],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "main_window.py",
+      "classes": [
+        {
+          "name": "MainWindow",
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": ["root", "main_root", "current_user"],
+              "returns": "None"
+            },
+            {
+              "name": "open_training_window",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "open_testing_window",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "open_dictionary_window",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "open_progress_window",
+              "parameters": [],
+              "returns": "None"
+            }
+          ]
+        }
+      ],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "progress_window.py",
+      "classes": [
+        {
+          "name": "ProgressWindow",
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": ["root", "main_root", "current_user"],
+              "returns": "None"
+            },
+            {
+              "name": "setup_ui",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "show_progress",
+              "parameters": [],
+              "returns": "None"
+            }
+          ]
+        }
+      ],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "progress_window_backup.py",
+      "classes": [],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "SpeakingTest.py",
+      "classes": [],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "SpeechTest.py",
+      "classes": [],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "styles.py",
+      "classes": [
+        {
+          "name": "StyledCanvas",
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": ["root"],
+              "returns": "None"
+            },
+            {
+              "name": "create_text",
+              "parameters": ["x", "y", "text", "font", "fill"],
+              "returns": "int"
+            },
+            {
+              "name": "create_button",
+              "parameters": ["x", "y", "text", "command", "width", "height"],
+              "returns": "int"
+            }
+          ]
+        },
+        {
+          "name": "StyledButton",
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": ["canvas", "x", "y", "text", "command", "width", "height"],
+              "returns": "None"
+            },
+            {
+              "name": "on_button_press",
+              "parameters": ["event"],
+              "returns": "None"
+            },
+            {
+              "name": "on_button_release",
+              "parameters": ["event"],
+              "returns": "None"
+            },
+            {
+              "name": "set_normal",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "set_hovered",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "set_clicked",
+              "parameters": [],
+              "returns": "None"
+            }
+          ]
+        }
+      ],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "test.py",
+      "classes": [],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "testing_window.py",
+      "classes": [
+        {
+          "name": "TopicSelectionScreen",
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": ["master", "on_start_test"],
+              "returns": "None"
+            },
+            {
+              "name": "setup_ui",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "show_user_info",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "load_topics",
+              "parameters": [],
+              "returns": "list"
+            },
+            {
+              "name": "load_tests",
+              "parameters": [],
+              "returns": "list"
+            },
+            {
+              "name": "clear_window",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "select_topic",
+              "parameters": ["topic"],
+              "returns": "None"
+            },
+            {
+              "name": "select_test",
+              "parameters": ["test"],
+              "returns": "None"
+            },
+            {
+              "name": "start_test",
+              "parameters": [],
+              "returns": "None"
+            }
+          ]
+        },
+        {
+          "name": "BaseLessonScreen",
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": ["master", "topic", "test"],
+              "returns": "None"
+            },
+            {
+              "name": "setup_ui",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "show_user_info",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "create_progress_bar",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "update_progress",
+              "parameters": ["correct"],
+              "returns": "None"
+            },
+            {
+              "name": "clear_window",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "return_to_selection",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "prev_word",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "next_word",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "check_answer",
+              "parameters": ["chosen", "correct", "sound_data"],
+              "returns": "None"
+            },
+            {
+              "name": "show_word",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "play_sound",
+              "parameters": ["sound_data"],
+              "returns": "None"
+            },
+            {
+              "name": "check_music_end",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "cleanup_temp_file",
+              "parameters": ["event"],
+              "returns": "None"
+            },
+            {
+              "name": "save_test_result",
+              "parameters": [],
+              "returns": "None"
+            }
+          ]
+        },
+        {
+          "name": "WordLessonScreen",
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": ["master", "topic", "test"],
+              "returns": "None"
+            },
+            {
+              "name": "load_words",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "show_word",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "check_answer",
+              "parameters": ["chosen", "correct", "sound_data"],
+              "returns": "None"
+            },
+            {
+              "name": "next_word",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "prev_word",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "end_test",
+              "parameters": [],
+              "returns": "None"
+            }
+          ]
+        },
+        {
+          "name": "WordWriteScreen",
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": ["master", "topic", "test"],
+              "returns": "None"
+            },
+            {
+              "name": "load_words",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "show_word",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "check_answer",
+              "parameters": ["chosen", "correct", "sound_data"],
+              "returns": "None"
+            },
+            {
+              "name": "next_word",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "prev_word",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "end_test",
+              "parameters": [],
+              "returns": "None"
+            }
+          ]
+        },
+        {
+          "name": "WordAudioScreen",
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": ["master", "topic", "test"],
+              "returns": "None"
+            },
+            {
+              "name": "load_words",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "show_word",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "check_answer",
+              "parameters": ["chosen", "correct", "sound_data"],
+              "returns": "None"
+            },
+            {
+              "name": "next_word",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "prev_word",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "end_test",
+              "parameters": [],
+              "returns": "None"
+            }
+          ]
+        },
+        {
+          "name": "WordSpeakScreen",
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": ["master", "topic", "test"],
+              "returns": "None"
+            },
+            {
+              "name": "load_words",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "show_word",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "recognize_speech",
+              "parameters": ["correct_word", "sound_data"],
+              "returns": "None"
+            },
+            {
+              "name": "check_answer",
+              "parameters": ["chosen", "correct", "sound_data"],
+              "returns": "None"
+            },
+            {
+              "name": "next_word",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "prev_word",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "end_test",
+              "parameters": [],
+              "returns": "None"
+            }
+          ]
+        },
+        {
+          "name": "MainTestApp",
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": ["root"],
+              "returns": "None"
+            },
+            {
+              "name": "show_topic_selection_screen",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "start_lesson",
+              "parameters": ["topic", "test"],
+              "returns": "None"
+            }
+          ]
+        },
+        {
+          "name": "TestingWindow",
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": ["root", "main_root", "current_user"],
+              "returns": "None"
+            }
+          ]
+        }
+      ],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "testing_window_backup.py",
+      "classes": [],
+      "functions": [],
+      "attributes": []
+    },
+    {
+      "file": "testing_window_backup2.py",
+      "classes": [
+        {
+          "name": "TopicSelectionScreen",
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": ["master", "on_start_test"],
+              "returns": "None"
+            },
+            {
+              "name": "setup_ui",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "show_user_info",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "load_topics",
+              "parameters": [],
+              "returns": "list"
+            },
+            {
+              "name": "load_tests",
+              "parameters": [],
+              "returns": "list"
+            },
+            {
+              "name": "clear_window",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "select_topic",
+              "parameters": ["topic"],
+              "returns": "None"
+            },
+            {
+              "name": "select_test",
+              "parameters": ["test"],
+              "returns": "None"
+            },
+            {
+              "name": "start_test",
+              "parameters": [],
+              "returns": "None"
+            }
+          ]
+        },
+        {
+          "name": "BaseLessonScreen",
+          "methods": [
+            {
+              "name": "__init__",
+              "parameters": ["master", "topic", "test"],
+              "returns": "None"
+            },
+            {
+              "name": "setup_ui",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "show_user_info",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "create_progress_bar",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "update_progress",
+              "parameters": ["correct"],
+              "returns": "None"
+            },
+            {
+              "name": "clear_window",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "return_to_selection",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "prev_word",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "next_word",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "check_answer",
+              "parameters": ["chosen", "correct", "sound_data"],
+              "returns": "None"
+            },
+            {
+              "name": "show_word",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "play_sound",
+              "parameters": ["sound_data"],
+              "returns": "None"
+            },
+            {
+              "name": "check_music_end",
+              "parameters": [],
+              "returns": "None"
+            },
+            {
+              "name": "cleanup_temp_file",
+              "parameters": ["event"],
+              "returns": "None"
+            },
+            {
+              "name": "save_test_result",
+              "parameters": [],
+              "returns": "None"
+            }
+          ]
+        }
+      ],
+      "functions": [],
+      "attributes": []
+    }
+  ]
+}
