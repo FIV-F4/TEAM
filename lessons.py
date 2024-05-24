@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import Label, Button, Entry, Frame
+from tkinter import Frame, Entry, Label, Button
 from tkinter.font import Font
 from PIL import Image, ImageTk
 import random
@@ -8,10 +8,10 @@ import io
 import pygame
 from datetime import datetime
 from main import BaseWindow
-
+from styles import StyledCanvas, StyledButton, TransparentLabel
 
 class Lessons(BaseWindow):
-    def __init__(self, root, main_root, current_user, topic, width=250, height=300):
+    def __init__(self, root, main_root, current_user, topic, width=200, height=250):
         super().__init__(root, main_root, current_user)
         self.current_user = current_user
         self.width = width
@@ -32,48 +32,37 @@ class Lessons(BaseWindow):
         self.font1 = Font(family="Helvetica", size=20, weight="bold")
         self.font2 = Font(family="Helvetica", size=12, weight="bold")
         self.font3 = Font(family="Helvetica", size=14, weight="normal")
-        self.title_label = Label(root, text="Название карточки", font=self.font1)
-        self.title_label.pack()
+
+        # Canvas
+        self.canvas = StyledCanvas(root)
+        self.canvas.pack(fill=tk.BOTH, expand=True)
 
         # Инициализация виджета для отображения текста задания
-        self.question_label = Label(root, font=self.font2)
-        self.question_label.pack()
+        self.question_label = self.canvas.create_text(400, 80, font=self.font2, fill="black")
 
         # Фрейм для карточки
-        self.card_frame = Frame(root)
-        self.card_frame.pack(pady=10)
+        self.card_frame = Frame(self.canvas)
+        self.canvas.create_window(400, 230, window=self.card_frame, anchor="center")
 
         # Инициализация карточки с изображением
         self.label = Label(self.card_frame)
         self.label.pack()
 
         # Индикаторы прогресса
-        self.indicator_frame = Frame(root)
-        self.indicator_frame.pack(pady=10)
-        self.indicators = [Label(self.indicator_frame, text="•", font=("Helvetica", 40), fg="lightgray") for _ in
-                           range(self.total_cards)]
+        self.indicator_frame = Frame(self.canvas)
+        self.canvas.create_window(400, 390, window=self.indicator_frame, anchor="center")
+        self.indicators = [Label(self.indicator_frame, text="[]", font=("Helvetica", 20), fg="lightgray") for _ in range(self.total_cards)]
         for indicator in self.indicators:
             indicator.pack(side="left", padx=1)
 
         # Кнопки выбора ответа
-        self.button_frame = Frame(root)
-        self.button_frame.pack(pady=10)
-        self.option_buttons = []
-
-        # Поле ввода для ответа
-        self.answer_entry = Entry(root, font=self.font2)
-        self.answer_entry.pack(pady=20)
-        self.answer_entry.pack_forget()
+        self.button_frame = Frame(self.canvas)
+        self.canvas.create_window(400, 450, window=self.button_frame, anchor="center")
 
         # Навигационные кнопки
-        self.nav_frame = Frame(root)
-        self.nav_frame.pack(pady=10)
-        self.prev_button = Button(self.nav_frame, text="Предыдущая", command=self.prev_card, font=self.font3)
-        self.prev_button.pack(side="left", padx=10)
-        self.next_button = Button(self.nav_frame, text="Следующая", command=self.next_card, font=self.font3)
-        self.next_button.pack(side="left", padx=10)
-        self.exit_button = Button(self.nav_frame, text="Выход", command=self.exit_to_main, font=self.font3)
-        self.exit_button.pack(side="left", padx=10)
+        self.prev_button = StyledButton(self.canvas, 200, 520, text="Предыдущая", command=self.prev_card, width=200, height=40)
+        self.next_button = StyledButton(self.canvas, 600, 520, text="Следующая", command=self.next_card, width=200, height=40)
+        self.exit_button = StyledButton(self.canvas, 400, 560, text="Выход", command=self.exit_to_main, width=100, height=40)
         self.label.bind("<Button-1>", self.flip_card)
 
         self.update_card()
@@ -112,10 +101,22 @@ class Lessons(BaseWindow):
         self.label.image = photo
 
     def update_card(self):
+        # Очистка предыдущих меток
+        if hasattr(self, 'title_label') and isinstance(self.title_label, TransparentLabel):
+            self.canvas.delete(self.title_label.text_id)
+        if hasattr(self, 'question_label') and isinstance(self.question_label, TransparentLabel):
+            self.canvas.delete(self.question_label.text_id)
+
         if self.current_card < self.total_cards:
             # Обновление текущей карточки с отображением номера и описания вопроса
-            self.title_label.config(text=f"Карточка № {self.current_card + 1}")
-            self.question_label.config(text="Выберите правильный перевод слова:")
+            self.title_label = TransparentLabel(self.canvas, 400, 40, text=f"Карточка № {self.current_card + 1}",
+                                                font=('Helvetica', 20, 'bold'), fill='black')
+            self.question_label = TransparentLabel(self.canvas, 400, 80, text="Выберите правильный перевод слова:",
+                                                   font=('Helvetica', 16), fill='black')
+
+            if not self.is_image_shown:
+                self.flip_card(None)
+
             self.load_image(self.cards[self.current_card])
             self.display_options()  # Обновление вариантов ответа и элементов ввода
             self.update_indicators()
@@ -126,7 +127,6 @@ class Lessons(BaseWindow):
         # Очистка текущих виджетов в button_frame
         for widget in self.button_frame.winfo_children():
             widget.destroy()
-
         correct_answer = self.answers[self.current_card]  # Пример правильного ответа
         random_answers = random.sample([ans for ans in self.answers if ans != correct_answer], 2)
         all_answers = random.sample(random_answers + [correct_answer], 3)
@@ -164,8 +164,8 @@ class Lessons(BaseWindow):
 
     def flip_card(self, event):
         # Анимация переворота карточки
-        steps = 10  # Количество шагов в анимации
-        delay = 25  # Задержка между шагами в миллисекундах
+        steps = 7  # Количество шагов в анимации
+        delay = 1  # Задержка между шагами в миллисекундах
 
         if self.is_image_shown:
             # Переворот от изображения к тексту
@@ -179,7 +179,7 @@ class Lessons(BaseWindow):
             self.is_image_shown = False
         else:
             # Переворот обратно к изображению
-            self.canvas.pack_forget()
+            self.backside_canvas.pack_forget()
             for i in range(steps + 1):
                 alpha = i / steps
                 self.update_alpha(alpha)
@@ -190,19 +190,19 @@ class Lessons(BaseWindow):
 
     def draw_backside(self):
         # Создание холста для рисования обратной стороны карточки
-        self.canvas = tk.Canvas(self.card_frame, width=self.width, height=self.height, bg='white')
-        self.canvas.pack()
+        self.backside_canvas = tk.Canvas(self.card_frame, width=self.width, height=self.height, bg='white')
+        self.backside_canvas.pack()
         # Рисуем белый прямоугольник в качестве фона
-        self.canvas.create_rectangle(10, 10, self.width - 10, self.height - 10, fill="white", outline="black")
+        self.backside_canvas.create_rectangle(10, 10, self.width - 10, self.height - 10, fill="white", outline="black")
         # Добавляем текст поверх прямоугольника
-        self.canvas.create_text(self.width / 2, self.height / 2, text=self.back_texts[self.current_card],
-                                font=self.font1, fill="black")
+        self.backside_canvas.create_text(self.width / 2, self.height / 2, text=self.back_texts[self.current_card],
+                                         font=self.font1, fill="black")
         # Привязываем событие клика мыши к холсту для обратного переворота
-        self.canvas.bind("<Button-1>", self.flip_card)
+        self.backside_canvas.bind("<Button-1>", self.flip_card)
 
         # Добавляем кнопку для воспроизведения звука
-        sound_button = Button(self.canvas, text="Воспроизвести", command=self.play_sound)
-        self.canvas.create_window(self.width / 2, self.height - 30, window=sound_button)
+        sound_button = Button(self.backside_canvas, text="Воспроизвести", command=self.play_sound)
+        self.backside_canvas.create_window(self.width / 2, self.height - 30, window=sound_button)
 
     def play_sound(self):
         # Воспроизведение звукового файла из базы данных
@@ -241,47 +241,55 @@ class Lessons(BaseWindow):
             indicator.config(fg="black" if i == self.current_card else "lightgray")
 
     def prev_card(self):
+        # Очистка предыдущих меток
+        if hasattr(self, 'title_label') and isinstance(self.title_label, TransparentLabel):
+            self.canvas.delete(self.title_label.text_id)
+        if hasattr(self, 'question_label') and isinstance(self.question_label, TransparentLabel):
+            self.canvas.delete(self.question_label.text_id)
+
         # Переход к предыдущей карточке
         if self.current_card > 0:
-            if not self.is_image_shown:
-                self.flip_card(None)
             self.current_card -= 1
-            self.next_button.config(text="Следующая")
             self.update_card()
 
     def next_card(self):
+        # Очистка предыдущих меток
+        if hasattr(self, 'title_label') and isinstance(self.title_label, TransparentLabel):
+            self.canvas.delete(self.title_label.text_id)
+        if hasattr(self, 'question_label') and isinstance(self.question_label, TransparentLabel):
+            self.canvas.delete(self.question_label.text_id)
+
         # Переход к следующей карточке или подсчет очков
         if self.current_card < self.total_cards - 1:
-            if not self.is_image_shown:
-                self.flip_card(None)
             self.current_card += 1
             self.update_card()
-        elif self.current_card == self.total_cards - 1:
-            self.next_button.config(text="Результаты сохранены")
-            self.disable_navigation_buttons()
-            self.save_results()
+        else:
+            self.current_card += 1
+            self.show_results()
 
     def disable_navigation_buttons(self):
         # Деактивация навигационных кнопок
-        self.prev_button.config(state=tk.DISABLED)
-        self.next_button.config(state=tk.DISABLED)
-
-        # Деактивация всех кнопок
-        for btn in self.option_buttons:
-            if btn.winfo_exists():  # Проверка на существование кнопки
-                btn.config(state=tk.DISABLED)
+        self.prev_button.disable()
+        self.next_button.disable()
 
     def enable_navigation_buttons(self):
         # Активация навигационных кнопок
-        self.prev_button.config(state=tk.NORMAL)
-        self.next_button.config(state=tk.NORMAL)
+        self.prev_button.enable()
+        self.next_button.enable()
 
     def show_results(self):
+        # Очистка предыдущих меток
+        if hasattr(self, 'title_label') and isinstance(self.title_label, TransparentLabel):
+            self.canvas.delete(self.title_label.text_id)
+        if hasattr(self, 'question_label') and isinstance(self.question_label, TransparentLabel):
+            self.canvas.delete(self.question_label.text_id)
+
         # Показывает результаты
-        self.title_label.config(text="Результаты")
-        self.question_label.config(text=f"Правильных ответов: {self.correct_answers} из {self.total_cards}")
-        for widget in self.button_frame.winfo_children():
-            widget.destroy()
+        self.title_label = TransparentLabel(self.canvas, 400, 40, text="Результаты", font=('Helvetica', 20, 'bold'),
+                                            fill='black')
+        self.question_label = TransparentLabel(self.canvas, 400, 80, text=f"Правильных ответов: "
+                                                                          f"{self.correct_answers} из {self.total_cards}",
+                                               font=('Helvetica', 16), fill='black')
         self.disable_navigation_buttons()
 
     def save_results(self):
