@@ -272,7 +272,7 @@ class WordLessonScreen(BaseLessonScreen):
 
     def end_test(self):
         self.message_label.update_text(f"Тест окончен! Ваши баллы: {self.score}/8")
-        self.message_label.set_fill('black')
+        self.message_label.set_fill('red')
         for btn in self.buttons_frame.winfo_children():
             btn.config(state=tk.DISABLED)
         self.prev_button.disable()
@@ -360,7 +360,7 @@ class WordWriteScreen(BaseLessonScreen):
 
     def end_test(self):
         self.message_label.update_text(f"Тест окончен! Ваши баллы: {self.score}/8")
-        self.message_label.set_fill('black')
+        self.message_label.set_fill('red')
         self.input_entry.config(state=tk.DISABLED)
         self.prev_button.disable()
         self.next_button.disable()
@@ -450,7 +450,7 @@ class WordAudioScreen(BaseLessonScreen):
 
     def end_test(self):
         self.message_label.update_text(f"Тест окончен! Ваши баллы: {self.score}/8")
-        self.message_label.set_fill('black')
+        self.message_label.set_fill('red')
         for btn in self.buttons_frame.winfo_children():
             btn.config(state=tk.DISABLED)
         self.prev_button.disable()
@@ -545,7 +545,7 @@ class WordSpeakScreen(BaseLessonScreen):
 
     def end_test(self):
         self.message_label.update_text(f"Тест окончен! Ваши баллы: {self.score}/8")
-        self.message_label.set_fill('black')
+        self.message_label.set_fill('red')
         self.next_button.disable()
         self.save_test_result()
 
