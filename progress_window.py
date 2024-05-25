@@ -86,6 +86,9 @@ class ProgressWindow(BaseWindow):
         ''', (self.current_user,))
         achievements = cursor.fetchall()
         conn.close()
+        print(self.current_user)
+        if not achievements:
+            return
 
         column = 0
         row = 0
