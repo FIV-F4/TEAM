@@ -163,3 +163,7 @@ cython_debug/
 .db_operator/multimedia/
 .DS_Store
 # end by andrei basov
+# start by Kharitonov Yury
+log.txt
+Parser.py
+# end by Kharitonov Yury

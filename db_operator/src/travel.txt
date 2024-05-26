@@ -1,6 +1,6 @@
 1. паспорт - passport
 2. билет - ticket
-3. регистрация - check-in
+3. регистрация - check in
 4. рейс - flight
 5. отпуск - vacation
 6. виза - visa
@@ -39,8 +39,8 @@
 39. аренда - rental
 40. бронирование - booking
 41. номер - room
-42. заселение - check-in (hotel)
-43. выселение - check-out (hotel)
+42. заселение - check in (hotel)
+43. выселение - check out (hotel)
 44. двухместный номер - double room
 45. одноместный номер - single room
 46. местный - local

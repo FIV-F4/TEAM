@@ -11,7 +11,7 @@ from main import BaseWindow
 from styles import StyledCanvas, StyledButton, TransparentLabel
 
 class Lessons(BaseWindow):
-    def __init__(self, root, main_root, current_user, topic, width=200, height=250):
+    def __init__(self, root, main_root, current_user, topic, width=250, height=250):
         super().__init__(root, main_root, current_user)
         self.current_user = current_user
         self.width = width
@@ -164,7 +164,7 @@ class Lessons(BaseWindow):
 
     def flip_card(self, event):
         # Анимация переворота карточки
-        steps = 7  # Количество шагов в анимации
+        steps = 3  # Количество шагов в анимации
         delay = 1  # Задержка между шагами в миллисекундах
 
         if self.is_image_shown:

@@ -308,7 +308,7 @@ class WordWriteScreen(BaseLessonScreen):
         if self.words:
             english, russian, picture_data, sound_data = self.words[self.current_word_index]
             image = Image.open(io.BytesIO(picture_data))
-            image = image.resize((256, 256))
+            image = image.resize((250, 250))
             photo = ImageTk.PhotoImage(image)
             self.image_label.configure(image=photo)
             self.image_label.image = photo
